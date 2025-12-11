@@ -1,0 +1,207 @@
+
+.root {
+    -fx-background-color: #ffffff;
+    -fx-font-family: "Segoe UI", "Roboto", "Arial";
+    -fx-text-fill: #2c3e50;
+}
+
+.vbox, .hbox {
+    -fx-spacing: 10;
+}
+
+.separator *.line {
+    -fx-background-color: #e0e0e0;
+}
+
+/* ===== TOP HEADER (user info) ===== */
+
+.top-header {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #e5e7eb;
+    -fx-border-width: 0 0 1 0;
+}
+
+.user-name-label {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #111827;
+}
+
+.user-role-label {
+    -fx-font-size: 11px;
+    -fx-text-fill: #6b7280;
+}
+
+/* Плейсхолдер для аватарки (если нет картинки) */
+.user-avatar-placeholder {
+    -fx-effect: dropshadow(gaussian, rgba(15,23,42,0.2), 4, 0.4, 0, 0);
+    -fx-arc-width: 999;
+    -fx-arc-height: 999;
+    -fx-background-radius: 999;
+}
+
+/* ===== SIDEBAR ===== */
+
+/* ===== SIDEBAR ===== */
+
+.sidebar {
+    -fx-background-color: #f5f7fb;
+    -fx-border-color: #e5e7eb;
+    -fx-border-width: 0 1 0 0;
+}
+
+.sidebar-logo {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2563eb;
+}
+
+/* Кнопка бокового меню — базовое состояние */
+.sidebar-button {
+    -fx-background-color: transparent;
+    -fx-background-radius: 6;
+}
+
+.sidebar-button:hover {
+    -fx-background-color: #e0edff;
+}
+
+/* Текст внутри пункта меню */
+.sidebar-button-label {
+    -fx-text-fill: #111827;
+    -fx-font-size: 14px;
+    -fx-font-weight: 600;
+}
+
+/* Активная (выбранная) кнопка */
+.sidebar-button-active {
+    -fx-background-color: #2563eb;
+}
+
+/* У активной кнопки текст всегда белый */
+.sidebar-button-active .sidebar-button-label {
+    -fx-text-fill: #ffffff;
+}
+
+
+/* ===== BUTTONS (main blue buttons) ===== */
+
+.button {
+    -fx-background-color: linear-gradient(to bottom, #3b82f6, #2563eb);
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 6;
+    -fx-padding: 6 16 6 16;
+    -fx-border-color: transparent;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(15,23,42,0.15), 4, 0.3, 0, 1);
+}
+
+.button:hover {
+    -fx-background-color: linear-gradient(to bottom, #2563eb, #1d4ed8);
+}
+
+.button:pressed {
+    -fx-background-color: #1d4ed8;
+    -fx-effect: none;
+}
+
+/* ===== INPUTS ===== */
+
+.text-field, .combo-box-base, .date-picker {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #d1d5db;
+    -fx-border-radius: 4;
+    -fx-background-radius: 4;
+    -fx-padding: 4 8 4 8;
+}
+
+.text-field:focused, .combo-box-base:focused, .date-picker:focused {
+    -fx-border-color: #3b82f6;
+    -fx-effect: dropshadow(gaussian, rgba(59,130,246,0.3), 4, 0.3, 0, 0);
+}
+
+/* ===== TABLES ===== */
+
+.table-view {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #d1d5db;
+    -fx-border-radius: 4;
+    -fx-background-radius: 4;
+}
+
+.table-view .column-header-background {
+    -fx-background-color: #f3f4f6;
+    -fx-border-color: #d1d5db;
+}
+
+.table-view .column-header, .table-view .column-header .label {
+    -fx-text-fill: #111827;
+    -fx-font-weight: bold;
+}
+
+.table-row-cell:odd {
+    -fx-background-color: #fafafa;
+}
+
+.table-row-cell:selected {
+    -fx-background-color: #2563eb;
+    -fx-text-fill: white;
+}
+
+.table-row-cell:selected .text {
+    -fx-fill: white;
+}
+
+/* ===== DASHBOARD METRIC CARDS ===== */
+
+.metric-card {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #e5e7eb;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+    -fx-padding: 10 14 10 14;
+    -fx-effect: dropshadow(gaussian, rgba(15,23,42,0.08), 6, 0.25, 0, 1);
+}
+
+/* Если внутри metric-card обычный Label */
+.metric-card > .label {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+
+/* ===== SECTION TITLES ===== */
+
+.section-title {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #111827;
+}
+
+/* ===== CHARTS ===== */
+
+.chart-title {
+    -fx-text-fill: #111827;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+
+.chart-legend {
+    -fx-background-color: transparent;
+}
+
+.axis-label {
+    -fx-text-fill: #4b5563;
+    -fx-font-size: 12px;
+}
+
+/* ===== SCROLLBARS (чуть более аккуратные) ===== */
+
+.scroll-bar:vertical, .scroll-bar:horizontal {
+    -fx-background-color: transparent;
+}
+
+.thumb {
+    -fx-background-color: #d4d4d8;
+    -fx-background-radius: 4;
+}

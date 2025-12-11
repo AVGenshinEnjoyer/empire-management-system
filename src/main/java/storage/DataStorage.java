@@ -1,13 +1,10 @@
-package storage;
-
+package storage;// storage/DataStorage.java
 import models.*;
 import java.util.ArrayList;
 import java.util.List;
 
-/**Хранилище всех данных приложения в памяти**/
-
 public class DataStorage {
-    // Статические листые
+    // Все данные хранятся в статических листах (в памяти)
     public static List<Client> clients = new ArrayList<>();
     public static List<Training> trainings = new ArrayList<>();
     public static List<Visit> visits = new ArrayList<>();
@@ -26,32 +23,17 @@ public class DataStorage {
     private static int inventoryIdCounter = 1;
     private static int employeeIdCounter = 1;
 
-    // Геттеры следующего ID
-    public static int getNextClientId() {
-        return clientIdCounter++;
-    }
+    // Методы для получения следующего ID
+    public static int getNextClientId() { return clientIdCounter++; }
+    public static int getNextTrainingId() { return trainingIdCounter++; }
+    public static int getNextVisitId() { return visitIdCounter++; }
+    public static int getNextSwordId() { return swordIdCounter++; }
+    public static int getNextSaleId() { return saleIdCounter++; }
+    public static int getNextInventoryId() { return inventoryIdCounter++; }
+    public static int getNextEmployeeId() { return employeeIdCounter++; }
 
-    public static int getNextTrainingId() {
-        return trainingIdCounter++;
-    }
-
-    public static int getNextVisitId() {
-        return visitIdCounter++;
-    }
-
-    public static int getNextSwordId() {
-        return swordIdCounter++;
-    }
-
-    public static int getNextSaleId() {
-        return saleIdCounter++;
-    }
-
-    public static int getNextInventoryId() {
-        return inventoryIdCounter++;
-    }
-
-    public static int getNextEmployeeId() {
-        return employeeIdCounter++;
+    // Метод для инициализации тестовыми данными (опционально)
+    public static void initializeTestData() {
+        // Можете добавить тестовые данные для разработки
     }
 }
