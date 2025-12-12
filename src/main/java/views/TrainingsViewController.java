@@ -35,18 +35,18 @@ public class TrainingsViewController {
         formBox.setStyle("-fx-border-color: #cccccc; -fx-padding: 10; -fx-border-radius: 5;");
 
         trainerField = new TextField();
-        trainerField.setPromptText("Имя тренера");
+        trainerField.setPromptText("Trainer's name");
 
         dayOfWeekField = new TextField();
-        dayOfWeekField.setPromptText("День недели (Пн, Вт, ...)");
+        dayOfWeekField.setPromptText("Day of the week: ");
 
         timeField = new TextField();
-        timeField.setPromptText("Время (например, 18:30)");
+        timeField.setPromptText("Time: ");
 
         maxClientsField = new TextField();
-        maxClientsField.setPromptText("Максимум клиентов");
+        maxClientsField.setPromptText("Maximal number of clients:");
 
-        Button addButton = new Button("Добавить тренировку");
+        Button addButton = new Button("Add training");
         addButton.setOnAction(e -> addTraining());
 
         formBox.getChildren().addAll(

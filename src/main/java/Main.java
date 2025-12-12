@@ -14,8 +14,8 @@ import views.AboutController;
 public class Main extends Application {
 
     // Жёстко заданные данные пользователя (отображаются справа сверху)
-    private static final String USER_NAME = "John Doe";
-    private static final String USER_ROLE = "Administrator";
+    private static final String USER_NAME = "Renat Arslanov";
+    private static final String USER_ROLE = "Owner";
 
     @Override
     public void start(Stage primaryStage) {
@@ -160,11 +160,9 @@ public class Main extends Application {
         // Аватарка пользователя
         ImageView avatarView = new ImageView();
         try {
-            Image avatar = new Image(getClass().getResourceAsStream("/avatar.png"));
+            Image avatar = new Image(getClass().getResourceAsStream("/ImperiaAvatar.jpg"));
             avatarView.setImage(avatar);
-        } catch (Exception ex) {
-            // Если картинки нет – просто используем плейсхолдер
-        }
+        } catch (Exception ex){};
         avatarView.setFitWidth(36);
         avatarView.setFitHeight(36);
         avatarView.setPreserveRatio(true);
@@ -181,12 +179,8 @@ public class Main extends Application {
 
         userBox.getChildren().addAll(nameLabel, roleLabel);
 
-        header.getChildren().addAll(spacer, userBox, avatarView);
+        header.getChildren().addAll(spacer, avatarView, userBox);
         return header;
     }
-
-
-    public static void main(String[] args) {
-        launch(args);
-    }
 }
+

@@ -40,7 +40,6 @@
     -fx-background-radius: 999;
 }
 
-/* ===== SIDEBAR ===== */
 
 /* ===== SIDEBAR ===== */
 
@@ -195,7 +194,14 @@
     -fx-font-size: 12px;
 }
 
-/* ===== SCROLLBARS (чуть более аккуратные) ===== */
+/* ===== CHARTS COLOR ===== */
+
+/* PieChart colors */
+.default-color0.chart-pie { -fx-pie-color: #25C0F0; }  /* swords */
+.default-color1.chart-pie { -fx-pie-color: #E65A6B; }  /* trainings */
+
+
+/* ===== SCROLLBARS ===== */
 
 .scroll-bar:vertical, .scroll-bar:horizontal {
     -fx-background-color: transparent;

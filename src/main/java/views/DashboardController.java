@@ -53,9 +53,9 @@ public class DashboardController {
 
         HBox row1 = new HBox(30);
 
-        totalRevenueLabel = createMetricLabel("💰 Общий доход", "0 ₸");
-        swordsRevenueLabel = createMetricLabel("⸸ Продажи мечей (80%)", "0 ₸");
-        trainingsRevenueLabel = createMetricLabel("🎯 Тренировки (20%)", "0 ₸");
+        totalRevenueLabel = createMetricLabel("💰 Total income", "0 ₸");
+        swordsRevenueLabel = createMetricLabel("⸸ Swords sales (80%)", "0 ₸");
+        trainingsRevenueLabel = createMetricLabel("🎯 Trainings (20%)", "0 ₸");
 
         row1.getChildren().addAll(totalRevenueLabel, swordsRevenueLabel, trainingsRevenueLabel);
         metricsBox.getChildren().addAll(row1);
@@ -79,73 +79,76 @@ public class DashboardController {
         double swordsRevenue = AnalyticsService.getSwordsRevenue(startDate, endDate);
         double trainingsRevenue = AnalyticsService.getTrainingsRevenue(startDate, endDate);
 
-        totalRevenueLabel.setText(String.format("💰 Общий доход\n%.2f ₸", totalRevenue));
-        swordsRevenueLabel.setText(String.format("⸸ Продажи мечей (80%%)\n%.2f ₸", swordsRevenue));
-        trainingsRevenueLabel.setText(String.format("🎯 Тренировки (20%%)\n%.2f ₸", trainingsRevenue));
+        totalRevenueLabel.setText(String.format("💰 Total sales\n%.2f ₸", totalRevenue));
+        swordsRevenueLabel.setText(String.format("⸸ Sword sales (80%%)\n%.2f ₸", swordsRevenue));
+        trainingsRevenueLabel.setText(String.format("🎯 Trainings (20%%)\n%.2f ₸", trainingsRevenue));
     }
 
     private PieChart createRevenueChart() {
         ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList(
-                new PieChart.Data("Продажи мечей (80%)", 80),
-                new PieChart.Data("Тренировки (20%)", 20)
+                new PieChart.Data("Sword sales (80%)", 80),
+                new PieChart.Data("Trainings (20%)", 20)
         );
 
         PieChart pieChart = new PieChart(pieChartData);
-        pieChart.setTitle("📊 Распределение доходов");
+        pieChart.setTitle("📊 Income distribution");
         pieChart.setPrefHeight(300);
         return pieChart;
     }
 
-    // График: продажи по моделям мечей
+    // График продажи по моделям мечей
     private BarChart<String, Number> createSalesChart() {
         CategoryAxis xAxis = new CategoryAxis();
-        xAxis.setLabel("Модель меча");
+        xAxis.setLabel("Sword model");
 
         NumberAxis yAxis = new NumberAxis();
-        yAxis.setLabel("Количество продаж");
+        yAxis.setLabel("Units sold");
 
         BarChart<String, Number> barChart = new BarChart<>(xAxis, yAxis);
-        barChart.setTitle("Продажи по моделям мечей");
+        barChart.setTitle("Sales by sword model");
 
         XYChart.Series<String, Number> series = new XYChart.Series<>();
-        series.setName("Продажи");
+        series.setName("Sales");
 
-        Map<String, Integer> salesByModel = AnalyticsService.getSalesByModel();
-
-        // Если данных ещё нет, подставляем примерные значения
-        if (salesByModel == null || salesByModel.isEmpty()) {
-            Map<String, Integer> demo = new LinkedHashMap<>();
-            demo.put("ABS Katana", 12);
-            demo.put("3D-printed Longsword", 8);
-            demo.put("Training Sword", 5);
-
-            for (Map.Entry<String, Integer> entry : demo.entrySet()) {
-                series.getData().add(new XYChart.Data<>(entry.getKey(), entry.getValue()));
-            }
-        } else {
-            for (Map.Entry<String, Integer> entry : salesByModel.entrySet()) {
-                series.getData().add(new XYChart.Data<>(entry.getKey(), entry.getValue()));
-            }
-        }
+        series.getData().add(new XYChart.Data<>("ABS Katana", 12));
+        series.getData().add(new XYChart.Data<>("3D-printed Longsword", 8));
+        series.getData().add(new XYChart.Data<>("Training Sword", 5));
 
         barChart.getData().add(series);
+
+        // Цвета для столбиков
+        String[] colors = {"#E65A6B", "#42C29E", "#F4C342"};
+
+        // Установка стилей ПОСЛЕ того, как график отрисуется
+        javafx.application.Platform.runLater(() -> {
+            for (int i = 0; i < series.getData().size(); i++) {
+                XYChart.Data<String, Number> data = series.getData().get(i);
+                if (data.getNode() != null) {
+                    String color = colors[i % colors.length];
+                    data.getNode().setStyle("-fx-bar-fill: " + color + ";");
+                }
+            }
+        });
         barChart.setPrefHeight(300);
         return barChart;
     }
 
-    // График: посещаемость тренировок по дням
+
+
+
+    // График посещаемость тренировок по дням
     private LineChart<String, Number> createAttendanceChart() {
         CategoryAxis xAxis = new CategoryAxis();
-        xAxis.setLabel("Дата");
+        xAxis.setLabel("Date");
 
         NumberAxis yAxis = new NumberAxis();
-        yAxis.setLabel("Количество посещений");
+        yAxis.setLabel("Attendance marks");
 
         LineChart<String, Number> lineChart = new LineChart<>(xAxis, yAxis);
-        lineChart.setTitle("Посещаемость тренировок по дням");
+        lineChart.setTitle("Training's attendance by day");
 
         XYChart.Series<String, Number> series = new XYChart.Series<>();
-        series.setName("Посещения");
+        series.setName("Attendance");
 
         Map<String, Integer> attendanceByDay = AnalyticsService.getAttendanceByDay();
 
