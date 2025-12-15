@@ -39,9 +39,9 @@ public class DashboardController {
                 new Separator(),
                 revenueChart,
                 new Separator(),
-                new Label("📊 Продажи по моделям:"),
+                new Label("📊 Sales by sword model:"),
                 salesChart,
-                new Label("📈 Посещаемость тренировок по дням:"),
+                new Label("📈 Training attendance:"),
                 attendanceChart
         );
         return mainVBox;
@@ -79,7 +79,7 @@ public class DashboardController {
         double swordsRevenue = AnalyticsService.getSwordsRevenue(startDate, endDate);
         double trainingsRevenue = AnalyticsService.getTrainingsRevenue(startDate, endDate);
 
-        totalRevenueLabel.setText(String.format("💰 Total sales\n%.2f ₸", totalRevenue));
+        totalRevenueLabel.setText(String.format("💰 Total sales: \n%.2f ₸", totalRevenue));
         swordsRevenueLabel.setText(String.format("⸸ Sword sales (80%%)\n%.2f ₸", swordsRevenue));
         trainingsRevenueLabel.setText(String.format("🎯 Trainings (20%%)\n%.2f ₸", trainingsRevenue));
     }
@@ -99,16 +99,17 @@ public class DashboardController {
     // График продажи по моделям мечей
     private BarChart<String, Number> createSalesChart() {
         CategoryAxis xAxis = new CategoryAxis();
-        xAxis.setLabel("Sword model");
+        xAxis.setLabel(null); // убрать подпись оси
 
         NumberAxis yAxis = new NumberAxis();
         yAxis.setLabel("Units sold");
 
         BarChart<String, Number> barChart = new BarChart<>(xAxis, yAxis);
         barChart.setTitle("Sales by sword model");
+        barChart.setLegendVisible(false); // убрать легенду
 
         XYChart.Series<String, Number> series = new XYChart.Series<>();
-        series.setName("Sales");
+        series.setName("Sales"); // имя теперь только для кода
 
         series.getData().add(new XYChart.Data<>("ABS Katana", 12));
         series.getData().add(new XYChart.Data<>("3D-printed Longsword", 8));

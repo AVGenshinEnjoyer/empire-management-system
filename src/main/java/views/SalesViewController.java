@@ -39,19 +39,19 @@ public class SalesViewController {
         formBox.setStyle("-fx-border-color: #cccccc; -fx-padding: 10; -fx-border-radius: 5;");
 
         swordModelField = new TextField();
-        swordModelField.setPromptText("Модель меча");
+        swordModelField.setPromptText("Sword model");
         swordModelField.setPrefWidth(300);
 
         swordPriceField = new TextField();
-        swordPriceField.setPromptText("Цена");
+        swordPriceField.setPromptText("Price");
         swordPriceField.setPrefWidth(300);
 
-        Button addButton = new Button("Добавить меч в каталог");
+        Button addButton = new Button("Add new sword");
         addButton.setPrefWidth(200);
         addButton.setOnAction(e -> addNewSword());
 
         formBox.getChildren().addAll(
-                new Label("Новый меч в каталог"),
+                new Label("New sword:"),
                 swordModelField, swordPriceField, addButton
         );
         return formBox;
@@ -62,15 +62,15 @@ public class SalesViewController {
         idCol.setCellValueFactory(cellData -> new javafx.beans.property.SimpleIntegerProperty(cellData.getValue().getId()).asObject());
         idCol.setPrefWidth(50);
 
-        TableColumn<Sword, String> modelCol = new TableColumn<>("Модель");
+        TableColumn<Sword, String> modelCol = new TableColumn<>("Model");
         modelCol.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(cellData.getValue().getModel()));
         modelCol.setPrefWidth(150);
 
-        TableColumn<Sword, Double> priceCol = new TableColumn<>("Цена");
+        TableColumn<Sword, Double> priceCol = new TableColumn<>("$Price");
         priceCol.setCellValueFactory(cellData -> new javafx.beans.property.SimpleDoubleProperty(cellData.getValue().getPrice()).asObject());
         priceCol.setPrefWidth(100);
 
-        TableColumn<Sword, String> statusCol = new TableColumn<>("Статус");
+        TableColumn<Sword, String> statusCol = new TableColumn<>("Status");
         statusCol.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(cellData.getValue().getStockStatus()));
         statusCol.setPrefWidth(120);
 
@@ -89,7 +89,7 @@ public class SalesViewController {
         String priceStr = swordPriceField.getText();
 
         if (model.isEmpty() || priceStr.isEmpty()) {
-            showAlert("Ошибка", "Заполните все поля");
+            showAlert("Error", "Fill in all fields!");
             return;
         }
 
@@ -102,9 +102,9 @@ public class SalesViewController {
             swordPriceField.clear();
 
             loadSwords();
-            showAlert("Успех", "Меч добавлен!");
+            showAlert("Great", "Sword added!");
         } catch (NumberFormatException e) {
-            showAlert("Ошибка", "Цена должна быть числом");
+            showAlert("Error", "Price must be a number!");
         }
     }
 
@@ -113,16 +113,16 @@ public class SalesViewController {
         formBox.setStyle("-fx-border-color: #cccccc; -fx-padding: 10; -fx-border-radius: 5;");
 
         paymentMethodCombo = new ComboBox<>();
-        paymentMethodCombo.getItems().addAll("Наличные", "Карта");
+        paymentMethodCombo.getItems().addAll("Cash", "Card");
         paymentMethodCombo.setPrefWidth(200);
 
-        Button saleButton = new Button("Зафиксировать продажу");
+        Button saleButton = new Button("Confirm sale");
         saleButton.setPrefWidth(200);
         saleButton.setOnAction(e -> recordSale());
 
         formBox.getChildren().addAll(
-                new Label("💰 Фиксация продажи"),
-                new Label("Выберите метод оплаты:"),
+                new Label("💰 Sale summary:"),
+                new Label("Choose payment method:"),
                 paymentMethodCombo, saleButton
         );
         return formBox;
@@ -133,14 +133,14 @@ public class SalesViewController {
         String paymentMethod = paymentMethodCombo.getValue();
 
         if (selectedSword == null || paymentMethod == null) {
-            showAlert("Ошибка", "Выберите меч и метод оплаты");
+            showAlert("Error", "Choose sword and payment method!");
             return;
         }
 
         SwordSale sale = new SwordSale(selectedSword.getId(), 1, selectedSword.getPrice(), paymentMethod);
         SalesService.recordSale(sale);
 
-        showAlert("Успех", "Продажа зафиксирована!");
+        showAlert("Great", "Sale recorded!");
         loadSwords();
     }
 

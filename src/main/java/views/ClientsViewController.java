@@ -32,24 +32,24 @@ public class ClientsViewController {
         formBox.setStyle("-fx-border-color: #cccccc; -fx-padding: 10; -fx-border-radius: 5;");
 
         nameField = new TextField();
-        nameField.setPromptText("ФИО");
+        nameField.setPromptText("Full name");
         nameField.setPrefWidth(300);
 
         phoneField = new TextField();
-        phoneField.setPromptText("Телефон");
+        phoneField.setPromptText("Phone number");
         phoneField.setPrefWidth(300);
 
         emailField = new TextField();
         emailField.setPromptText("Email");
         emailField.setPrefWidth(300);
 
-        Button addButton = new Button("Добавить клиента");
+        Button addButton = new Button("Add new client");
         addButton.setPrefWidth(150);
         addButton.setStyle("-fx-font-size: 12;");
         addButton.setOnAction(e -> addNewClient());
 
         formBox.getChildren().addAll(
-                new Label("📋 Регистрация клиента"),
+                new Label("📋 Client details:"),
                 nameField, phoneField, emailField, addButton
         );
         return formBox;
@@ -60,11 +60,11 @@ public class ClientsViewController {
         idCol.setCellValueFactory(cellData -> new javafx.beans.property.SimpleIntegerProperty(cellData.getValue().getId()).asObject());
         idCol.setPrefWidth(50);
 
-        TableColumn<Client, String> nameCol = new TableColumn<>("ФИО");
+        TableColumn<Client, String> nameCol = new TableColumn<>("Full name");
         nameCol.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(cellData.getValue().getName()));
         nameCol.setPrefWidth(150);
 
-        TableColumn<Client, String> phoneCol = new TableColumn<>("Телефон");
+        TableColumn<Client, String> phoneCol = new TableColumn<>("Phone number");
         phoneCol.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(cellData.getValue().getPhone()));
         phoneCol.setPrefWidth(150);
 
@@ -72,11 +72,11 @@ public class ClientsViewController {
         emailCol.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(cellData.getValue().getEmail()));
         emailCol.setPrefWidth(150);
 
-        TableColumn<Client, String> statusCol = new TableColumn<>("Статус");
+        TableColumn<Client, String> statusCol = new TableColumn<>("Status");
         statusCol.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(cellData.getValue().getSubscriptionStatus()));
         statusCol.setPrefWidth(100);
 
-        TableColumn<Client, Double> debtCol = new TableColumn<>("Задолженность");
+        TableColumn<Client, Double> debtCol = new TableColumn<>("Debt");
         debtCol.setCellValueFactory(cellData -> new javafx.beans.property.SimpleDoubleProperty(cellData.getValue().getDebt()).asObject());
         debtCol.setPrefWidth(100);
 
@@ -96,7 +96,7 @@ public class ClientsViewController {
         String email = emailField.getText();
 
         if (name.isEmpty() || phone.isEmpty()) {
-            showAlert("Ошибка", "Заполните ФИО и телефон!");
+            showAlert("Error", "Fill in all fields!");
             return;
         }
 
@@ -108,7 +108,7 @@ public class ClientsViewController {
         emailField.clear();
 
         loadClients();
-        showAlert("Успех", "Клиент добавлен!");
+        showAlert("Great", "Client added!");
     }
 
     private void showAlert(String title, String message) {

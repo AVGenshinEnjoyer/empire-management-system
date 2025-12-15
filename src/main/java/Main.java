@@ -13,13 +13,13 @@ import views.AboutController;
 
 public class Main extends Application {
 
-    // Жёстко заданные данные пользователя (отображаются справа сверху)
+    // Данные пользователя справа сверху
     private static final String USER_NAME = "Renat Arslanov";
     private static final String USER_ROLE = "Owner";
 
     @Override
     public void start(Stage primaryStage) {
-        primaryStage.setTitle("Empire of Dusk Management System");
+        primaryStage.setTitle("Imperia Sumraka software");
 
         // Корневой layout: слева меню, сверху header, по центру содержимое
         BorderPane root = new BorderPane();
@@ -56,7 +56,7 @@ public class Main extends Application {
         root.setCenter(contentPane);
 
         Scene scene = new Scene(root, 1400, 900);
-        // Подключаем общий CSS
+        // Общий CSS
         scene.getStylesheets().add(
                 getClass().getResource("/styles.css").toExternalForm()
         );
@@ -78,7 +78,7 @@ public class Main extends Application {
         sidebar.setPrefWidth(220);
         sidebar.getStyleClass().add("sidebar");
 
-        Label logoLabel = new Label("Empire of Dusk");
+        Label logoLabel = new Label("Imperia Sumraka");
         logoLabel.getStyleClass().add("sidebar-logo");
 
         SideBarButton dashboardBtn = new SideBarButton("Dashboard");
@@ -87,7 +87,7 @@ public class Main extends Application {
         SideBarButton salesBtn = new SideBarButton("Sales");
         SideBarButton aboutBtn = new SideBarButton("About Us");
 
-        // Список всех кнопок для удобного сброса стилей
+        // Список всех кнопок для сброса стилей
         SideBarButton[] buttons = {dashboardBtn, clientsBtn, trainingsBtn, salesBtn, aboutBtn};
 
         // Функция, которая делает одну кнопку активной
@@ -146,7 +146,7 @@ public class Main extends Application {
     }
 
 
-    // Создание верхнего header с именем пользователя и аватаркой
+    // Header с логином и аватаркой
     private HBox createHeader() {
         HBox header = new HBox();
         header.setPadding(new Insets(10, 20, 10, 20));
@@ -157,7 +157,7 @@ public class Main extends Application {
         Region spacer = new Region();
         HBox.setHgrow(spacer, Priority.ALWAYS);
 
-        // Аватарка пользователя
+        // Аватарка
         ImageView avatarView = new ImageView();
         try {
             Image avatar = new Image(getClass().getResourceAsStream("/ImperiaAvatar.jpg"));

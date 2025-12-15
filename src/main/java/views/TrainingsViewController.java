@@ -38,19 +38,19 @@ public class TrainingsViewController {
         trainerField.setPromptText("Trainer's name");
 
         dayOfWeekField = new TextField();
-        dayOfWeekField.setPromptText("Day of the week: ");
+        dayOfWeekField.setPromptText("Day of the week");
 
         timeField = new TextField();
-        timeField.setPromptText("Time: ");
+        timeField.setPromptText("Time");
 
         maxClientsField = new TextField();
-        maxClientsField.setPromptText("Maximal number of clients:");
+        maxClientsField.setPromptText("Maximum number of clients");
 
         Button addButton = new Button("Add training");
         addButton.setOnAction(e -> addTraining());
 
         formBox.getChildren().addAll(
-                new Label("📅 Новая тренировка"),
+                new Label("📅 New training:"),
                 trainerField,
                 dayOfWeekField,
                 timeField,
@@ -66,19 +66,19 @@ public class TrainingsViewController {
         idCol.setCellValueFactory(c -> new javafx.beans.property.SimpleIntegerProperty(c.getValue().getId()).asObject());
         idCol.setPrefWidth(50);
 
-        TableColumn<Training, String> trainerCol = new TableColumn<>("Тренер");
+        TableColumn<Training, String> trainerCol = new TableColumn<>("Trainer");
         trainerCol.setCellValueFactory(c -> new javafx.beans.property.SimpleStringProperty(c.getValue().getTrainerName()));
         trainerCol.setPrefWidth(150);
 
-        TableColumn<Training, String> dayCol = new TableColumn<>("День");
+        TableColumn<Training, String> dayCol = new TableColumn<>("Day");
         dayCol.setCellValueFactory(c -> new javafx.beans.property.SimpleStringProperty(c.getValue().getDayOfWeek()));
         dayCol.setPrefWidth(100);
 
-        TableColumn<Training, String> timeCol = new TableColumn<>("Время");
+        TableColumn<Training, String> timeCol = new TableColumn<>("Time");
         timeCol.setCellValueFactory(c -> new javafx.beans.property.SimpleStringProperty(c.getValue().getTime()));
         timeCol.setPrefWidth(100);
 
-        TableColumn<Training, Integer> maxCol = new TableColumn<>("Макс. клиентов");
+        TableColumn<Training, Integer> maxCol = new TableColumn<>("Max clients");
         maxCol.setCellValueFactory(c -> new javafx.beans.property.SimpleIntegerProperty(c.getValue().getMaxClients()).asObject());
         maxCol.setPrefWidth(120);
 
@@ -99,7 +99,7 @@ public class TrainingsViewController {
         String maxStr = maxClientsField.getText();
 
         if (trainer.isEmpty() || day.isEmpty() || time.isEmpty() || maxStr.isEmpty()) {
-            showAlert("Ошибка", "Заполните все поля");
+            showAlert("Error", "Fill in all fields!");
             return;
         }
 
@@ -114,9 +114,9 @@ public class TrainingsViewController {
             maxClientsField.clear();
 
             loadTrainings();
-            showAlert("Успех", "Тренировка добавлена!");
+            showAlert("Great", "Training added!");
         } catch (NumberFormatException e) {
-            showAlert("Ошибка", "Максимум клиентов должен быть числом");
+            showAlert("Error", "Maximum clients must be a number!");
         }
     }
 
