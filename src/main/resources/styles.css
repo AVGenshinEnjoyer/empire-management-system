@@ -32,13 +32,6 @@
     -fx-text-fill: #6b7280;
 }
 
-/* Плейсхолдер для аватарки (если нет картинки) */
-.user-avatar-placeholder {
-    -fx-effect: dropshadow(gaussian, rgba(15,23,42,0.2), 4, 0.4, 0, 0);
-    -fx-arc-width: 999;
-    -fx-arc-height: 999;
-    -fx-background-radius: 999;
-}
 
 
 /* ===== SIDEBAR ===== */

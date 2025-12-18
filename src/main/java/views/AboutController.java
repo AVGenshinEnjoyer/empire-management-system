@@ -16,7 +16,7 @@ import java.net.URISyntaxException;
 
 public class AboutController {
 
-    // Ссылки на соцсети / проект
+    // Ссылки на соцсети/проект
     private static final String INSTAGRAM_URL = "https://www.instagram.com/imperia_sumraka/";
     private static final String GITHUB_URL = "https://github.com/AVGenshinEnjoyer/empire-management-system";
 
@@ -34,7 +34,7 @@ public class AboutController {
         } catch (Exception ignored) {
         }
         bannerView.setPreserveRatio(true);
-        bannerView.setFitWidth(700); // ширину можно подправить
+        bannerView.setFitWidth(800); // ширину можно подправить
 
         // Хэштег под баннером
         Label hashtag = new Label("@Imperia_Sumraka");

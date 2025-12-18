@@ -6,6 +6,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Separator;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.shape.Circle;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import views.*;
@@ -19,7 +20,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        primaryStage.setTitle("Imperia Sumraka software");
+        primaryStage.setTitle("Imperia Sumraka Software");
 
         // Корневой layout: слева меню, сверху header, по центру содержимое
         BorderPane root = new BorderPane();
@@ -160,13 +161,17 @@ public class Main extends Application {
         // Аватарка
         ImageView avatarView = new ImageView();
         try {
-            Image avatar = new Image(getClass().getResourceAsStream("/ImperiaAvatar.jpg"));
+            Image avatar = new Image(getClass().getResourceAsStream("/Avatar.jpg"));
             avatarView.setImage(avatar);
         } catch (Exception ex){};
+
         avatarView.setFitWidth(36);
         avatarView.setFitHeight(36);
         avatarView.setPreserveRatio(true);
-        avatarView.getStyleClass().add("user-avatar-placeholder");
+        avatarView.setSmooth(true);
+
+        Circle clip = new Circle(18, 18, 18);
+        avatarView.setClip(clip);
 
         VBox userBox = new VBox(2);
         userBox.setAlignment(Pos.CENTER_LEFT);
