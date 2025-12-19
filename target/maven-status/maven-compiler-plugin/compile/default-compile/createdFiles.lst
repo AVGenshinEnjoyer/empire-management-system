@@ -8,6 +8,7 @@ Main.class
 services\SwordService.class
 models\Sword.class
 models\InventoryItem.class
+views\TrainingsViewController$1.class
 storage\DataStorage.class
 models\Visit.class
 services\VisitService.class
@@ -15,9 +16,11 @@ models\AuditLog.class
 views\DashboardController.class
 services\InventoryService.class
 models\Training.class
+views\SalesViewController$1.class
 models\Client.class
 views\ClientsViewController.class
 services\SalesService.class
 models\SwordSale.class
 models\Employee.class
 services\ClientService.class
+views\ClientsViewController$1.class

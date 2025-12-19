@@ -4,6 +4,7 @@ import javafx.scene.layout.VBox;
 import javafx.geometry.Insets;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import models.Sword;
 import services.ClientService;
 import models.Client;
 
@@ -65,9 +66,17 @@ public class ClientsViewController {
 
 
     private void setupClientsTable() {
-        TableColumn<Client, Integer> idCol = new TableColumn<>("ID");
-        idCol.setCellValueFactory(cellData -> new javafx.beans.property.SimpleIntegerProperty(cellData.getValue().getId()).asObject());
+        TableColumn<Client, Void> idCol = new TableColumn<>("ID");
         idCol.setPrefWidth(50);
+        idCol.setSortable(false);
+        idCol.setCellFactory(col -> new TableCell<>() {
+            @Override
+            protected void updateItem(Void item, boolean empty) {
+                super.updateItem(item, empty);
+                setText(empty ? "" : String.valueOf(getIndex() + 1));
+            }
+        });
+
 
         TableColumn<Client, String> nameCol = new TableColumn<>("Full name");
         nameCol.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(cellData.getValue().getName()));
@@ -95,6 +104,19 @@ public class ClientsViewController {
 
     private void loadClients() {
         ObservableList<Client> data = FXCollections.observableArrayList();
+        data.addAll(
+                new Client("Ramazan", "+7707*******", "Ram****@gmail.com"),
+                new Client("Radmir", "+7777*******", "Rad****@mail.ru"),
+                new Client("Emil", "+7747*******", "Emil12****@yandex.ru"),
+                new Client("Amir", "+7707*******", "AmirS****@gmail.com"),
+                new Client("Alexandra", "+7707*******", "SashaTk****@gmail.com"),
+                new Client("Victoria", "+7707*******", "4****@iitu.edu.kz"),
+                new Client("Anna", "+7707*******", "Ann****@mail.ru"),
+                new Client("Roman", "+7707*******", "Roma****@gmail.com"),
+                new Client("Dmitriy", "+7701*******", "Dimas15****@yandex.ru"),
+                new Client("Ivan", "+7777*******", "Vanek****@mail.ru")
+                );
+
         data.addAll(ClientService.getAllClients());
         clientsTable.setItems(data);
     }

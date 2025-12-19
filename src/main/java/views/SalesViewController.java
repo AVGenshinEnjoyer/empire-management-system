@@ -1,5 +1,6 @@
 package views;// views/SalesViewController.java
 import javafx.scene.control.*;
+import javafx.scene.control.cell.ChoiceBoxTableCell;
 import javafx.scene.layout.VBox;
 import javafx.geometry.Insets;
 import javafx.collections.FXCollections;
@@ -27,12 +28,30 @@ public class SalesViewController {
         setupSwordsTable();
         loadSwords();
 
+
         // Форма для продажи
         VBox saleForm = createSaleForm();
 
         mainVBox.getChildren().addAll(catalogForm, new Separator(), swordsTable, new Separator(), saleForm);
         return mainVBox;
     }
+
+    private void loadSwords(){
+        ObservableList<Sword> data = FXCollections.observableArrayList();
+
+        data.addAll(
+                new Sword("Waterfall Sword", "/images/waterfall.png", 5995),
+                new Sword("Guardian’s Grace Sword", "/images/Guardian’s Grace.png", 5995),
+                new Sword("Skybreaker Sword", "/images/Skybreaker.png", 5995),
+                new Sword("Fernspire ", "/images/Fernspire.png", 5995),
+                new Sword("Diablo Sword", "/images/Diablo.png", 7995),
+                new Sword("Titanfall Sword", "/images/Titanfall.png", 6995));
+
+        data.addAll(SwordService.getAllSwords());
+        swordsTable.setItems(data);
+    }
+
+
 
     private VBox createCatalogForm() {
         VBox formBox = new VBox(10);
@@ -58,15 +77,24 @@ public class SalesViewController {
     }
 
     private void setupSwordsTable() {
-        TableColumn<Sword, Integer> idCol = new TableColumn<>("ID");
-        idCol.setCellValueFactory(cellData -> new javafx.beans.property.SimpleIntegerProperty(cellData.getValue().getId()).asObject());
+        // ID - прибавление по одному
+        TableColumn<Sword, Void> idCol = new TableColumn<>("ID");
         idCol.setPrefWidth(50);
+        idCol.setSortable(false);
+        idCol.setCellFactory(col -> new TableCell<>() {
+            @Override
+            protected void updateItem(Void item, boolean empty) {
+                super.updateItem(item, empty);
+                setText(empty ? "" : String.valueOf(getIndex() + 1));
+            }
+        });
+
 
         TableColumn<Sword, String> modelCol = new TableColumn<>("Model");
         modelCol.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(cellData.getValue().getModel()));
         modelCol.setPrefWidth(150);
 
-        TableColumn<Sword, Double> priceCol = new TableColumn<>("$Price");
+        TableColumn<Sword, Double> priceCol = new TableColumn<>("₸Price");
         priceCol.setCellValueFactory(cellData -> new javafx.beans.property.SimpleDoubleProperty(cellData.getValue().getPrice()).asObject());
         priceCol.setPrefWidth(100);
 
@@ -74,15 +102,24 @@ public class SalesViewController {
         statusCol.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(cellData.getValue().getStockStatus()));
         statusCol.setPrefWidth(120);
 
+
+
+
+        // Меняем наличие мечей(In Stock, Out Of Stock)
+        swordsTable.setEditable(true);
+
+        statusCol.setCellFactory(ChoiceBoxTableCell.forTableColumn(FXCollections.observableArrayList("In stock", "Out of stock")));
+
+        statusCol.setOnEditCommit(e -> {
+            Sword s = e.getRowValue();
+            s.setStockStatus(e.getNewValue());
+            SwordService.updateSword(s);
+        });
+
         swordsTable.getColumns().addAll(idCol, modelCol, priceCol, statusCol);
         swordsTable.setPrefHeight(300);
     }
 
-    private void loadSwords() {
-        ObservableList<Sword> data = FXCollections.observableArrayList();
-        data.addAll(SwordService.getAllSwords());
-        swordsTable.setItems(data);
-    }
 
     private void addNewSword() {
         String model = swordModelField.getText();

@@ -29,4 +29,6 @@ public class Sword {
 
     public String getStockStatus(){ return stockStatus; }
     public void setStockStatus(String status){ this.stockStatus = status; }
+
+    public String setStockStatus(){ return stockStatus; }
 }

@@ -5,6 +5,7 @@ import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
+import models.Client;
 import models.Training;
 import services.TrainingService;
 
@@ -62,9 +63,16 @@ public class TrainingsViewController {
     }
 
     private void setupTrainingsTable() {
-        TableColumn<Training, Integer> idCol = new TableColumn<>("ID");
-        idCol.setCellValueFactory(c -> new javafx.beans.property.SimpleIntegerProperty(c.getValue().getId()).asObject());
+        TableColumn<Training, Void> idCol = new TableColumn<>("ID");
         idCol.setPrefWidth(50);
+        idCol.setSortable(false);
+        idCol.setCellFactory(col -> new TableCell<>() {
+            @Override
+            protected void updateItem(Void item, boolean empty) {
+                super.updateItem(item, empty);
+                setText(empty ? "" : String.valueOf(getIndex() + 1));
+            }
+        });
 
         TableColumn<Training, String> trainerCol = new TableColumn<>("Trainer");
         trainerCol.setCellValueFactory(c -> new javafx.beans.property.SimpleStringProperty(c.getValue().getTrainerName()));
@@ -88,6 +96,12 @@ public class TrainingsViewController {
 
     private void loadTrainings() {
         ObservableList<Training> data = FXCollections.observableArrayList();
+        data.addAll(
+                new Training("Dauletbakova Sofia", "Sunday", "17:00", 13),
+                new Training("Arslanov Renat", "Tuesday", "17:30", 18),
+                new Training("Alihan Adilzhan", "Thursday", "19:00", 10)
+
+        );
         data.addAll(TrainingService.getAllTrainings());
         trainingsTable.setItems(data);
     }
