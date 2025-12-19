@@ -32,7 +32,7 @@ public class TrainingsViewController {
 
     private VBox createTrainingForm() {
         VBox formBox = new VBox(10);
-        formBox.setStyle("-fx-border-color: #cccccc; -fx-padding: 10; -fx-border-radius: 5;");
+        formBox.setStyle("-fx-border-color: #cccccc; -fx-padding: 10; -fx-border-radius: 10;");
 
         trainerField = new TextField();
         trainerField.setPromptText("Trainer's name");

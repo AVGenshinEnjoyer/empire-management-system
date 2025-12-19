@@ -27,29 +27,36 @@ public class DashboardController {
     public VBox createDashboard() {
         VBox mainVBox = new VBox(15);
         mainVBox.setPadding(new Insets(20));
-        mainVBox.setStyle("-fx-font-size: 14;");
+        mainVBox.getStyleClass().add("page");
 
         VBox metricsBox = createMetricsBox();
         PieChart revenueChart = createRevenueChart();
         BarChart<String, Number> salesChart = createSalesChart();
         LineChart<String, Number> attendanceChart = createAttendanceChart();
 
+        Label salesLabel = new Label("📊 Sales by sword model:");
+        salesLabel.getStyleClass().add("section-title");
+
+        Label attendanceLabel = new Label("📈 Training attendance:");
+        attendanceLabel.getStyleClass().add("section-title");
+
         mainVBox.getChildren().addAll(
                 metricsBox,
                 new Separator(),
                 revenueChart,
                 new Separator(),
-                new Label("📊 Sales by sword model:"),
+                salesLabel,
                 salesChart,
-                new Label("📈 Training attendance:"),
+                attendanceLabel,
                 attendanceChart
         );
         return mainVBox;
     }
 
+
     private VBox createMetricsBox() {
         VBox metricsBox = new VBox(10);
-        metricsBox.setStyle("-fx-border-color: #3498db; -fx-padding: 15; -fx-border-radius: 5; -fx-background-color: #ecf0f1;");
+        metricsBox.getStyleClass().add("card");
 
         HBox row1 = new HBox(30);
 
@@ -64,11 +71,13 @@ public class DashboardController {
         return metricsBox;
     }
 
+
     private Label createMetricLabel(String title, String value) {
         Label label = new Label(title + "\n" + value);
-        label.setStyle("-fx-font-size: 14; -fx-font-weight: bold; -fx-padding: 10;");
+        label.getStyleClass().addAll("metric-card", "metric-label");
         return label;
     }
+
 
     private void updateMetrics() {
         LocalDate today = LocalDate.now();
@@ -80,8 +89,8 @@ public class DashboardController {
         double trainingsRevenue = AnalyticsService.getTrainingsRevenue(startDate, endDate);
 
         totalRevenueLabel.setText(String.format("💰 Total sales: \n%.2f ₸", totalRevenue));
-        swordsRevenueLabel.setText(String.format("⸸ Sword sales (80%%)\n%.2f ₸", swordsRevenue));
-        trainingsRevenueLabel.setText(String.format("🎯 Trainings (20%%)\n%.2f ₸", trainingsRevenue));
+        swordsRevenueLabel.setText(String.format("⸸ Sword sales: (80%%)\n%.2f ₸", swordsRevenue));
+        trainingsRevenueLabel.setText(String.format("🎯 Trainings: (20%%)\n%.2f ₸", trainingsRevenue));
     }
 
     private PieChart createRevenueChart() {
@@ -120,7 +129,7 @@ public class DashboardController {
         // Цвета для столбиков
         String[] colors = {"#E65A6B", "#42C29E", "#F4C342"};
 
-        // Установка стилей ПОСЛЕ того, как график отрисуется
+        // Установка стилей ПОСЛЕ того, как график отрисуется. Это ваще ЖОПА
         javafx.application.Platform.runLater(() -> {
             for (int i = 0; i < series.getData().size(); i++) {
                 XYChart.Data<String, Number> data = series.getData().get(i);

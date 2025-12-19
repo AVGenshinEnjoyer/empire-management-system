@@ -33,7 +33,6 @@ public class ClientService {
 
     public static void deleteClient(int clientId) {
         DataStorage.clients.removeIf(c -> c.getId() == clientId);
-        // Удалим также все визиты этого клиента
         DataStorage.visits.removeIf(v -> v.getClientId() == clientId);
     }
 }

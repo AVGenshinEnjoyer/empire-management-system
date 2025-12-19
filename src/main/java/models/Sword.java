@@ -1,6 +1,5 @@
 package models;
 
-// models/Sword.java
 public class Sword {
     private int id;
     private String model;
@@ -15,19 +14,19 @@ public class Sword {
         this.stockStatus = "available";
     }
 
-    // Getters и Setters
-    public int getId() { return id; }
-    public void setId(int id) { this.id = id; }
+    // Не поверите что
+    public int getId(){ return id; }
+    public void setId(int id){ this.id = id; }
 
-    public String getModel() { return model; }
-    public void setModel(String model) { this.model = model; }
+    public String getModel(){ return model; }
+    public void setModel(String model){ this.model = model; }
 
-    public String getType() { return type; }
-    public void setType(String type) { this.type = type; }
+    public String getType(){ return type; }
+    public void setType(String type){ this.type = type; }
 
-    public double getPrice() { return price; }
-    public void setPrice(double price) { this.price = price; }
+    public double getPrice(){ return price; }
+    public void setPrice(double price){ this.price = price; }
 
-    public String getStockStatus() { return stockStatus; }
-    public void setStockStatus(String status) { this.stockStatus = status; }
+    public String getStockStatus(){ return stockStatus; }
+    public void setStockStatus(String status){ this.stockStatus = status; }
 }

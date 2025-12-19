@@ -1,6 +1,5 @@
 package models;
 
-// models/InventoryItem.java
 public class InventoryItem {
     private int id;
     private String materialName;
@@ -13,12 +12,12 @@ public class InventoryItem {
         this.unit = unit;
     }
 
-    // Getters и Setters
-    public int getId() { return id; }
-    public void setId(int id) { this.id = id; }
+    // Снова геттеры и сеттеры
+    public int getId(){ return id; }
+    public void setId(int id){ this.id = id; }
 
-    public String getMaterialName() { return materialName; }
-    public int getQuantity() { return quantity; }
-    public void setQuantity(int quantity) { this.quantity = quantity; }
-    public String getUnit() { return unit; }
+    public String getMaterialName(){ return materialName; }
+    public int getQuantity(){ return quantity; }
+    public void setQuantity(int quantity){ this.quantity = quantity; }
+    public String getUnit(){ return unit; }
 }

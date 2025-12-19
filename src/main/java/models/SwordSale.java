@@ -1,4 +1,4 @@
-package models;// models/SwordSale.java
+package models;
 import java.time.LocalDate;
 
 public class SwordSale {
@@ -17,13 +17,13 @@ public class SwordSale {
         this.saleDate = LocalDate.now().toString();
     }
 
-    // Getters и Setters
-    public int getId() { return id; }
-    public void setId(int id) { this.id = id; }
+    // Салам
+    public int getId(){ return id; }
+    public void setId(int id){ this.id = id; }
 
-    public int getSwordId() { return swordId; }
-    public int getClientId() { return clientId; }
-    public String getSaleDate() { return saleDate; }
-    public double getAmount() { return amount; }
-    public String getPaymentMethod() { return paymentMethod; }
+    public int getSwordId(){ return swordId; }
+    public int getClientId(){ return clientId; }
+    public String getSaleDate(){ return saleDate; }
+    public double getAmount(){ return amount; }
+    public String getPaymentMethod(){ return paymentMethod; }
 }

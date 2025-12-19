@@ -5,7 +5,7 @@ import javafx.scene.Cursor;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 
-//Боковое меню
+// Боковое меню
 public class SideBarButton extends HBox {
 
     private final Label label;
@@ -20,7 +20,7 @@ public class SideBarButton extends HBox {
         this.setCursor(Cursor.HAND);
     }
 
-    //Активное состояние (подсветка кнопки синим цветом)
+    // Подсветка кнопки синим цветом слева
     public void setActive(boolean active) {
         this.getStyleClass().remove("sidebar-button-active");
         if (active) {

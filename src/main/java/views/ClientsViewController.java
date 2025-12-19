@@ -14,11 +14,10 @@ public class ClientsViewController {
     public VBox createClientView() {
         VBox mainVBox = new VBox(10);
         mainVBox.setPadding(new Insets(15));
+        mainVBox.getStyleClass().add("page"); // чтобы шрифт/цвета были единообразны
 
-        // Форма для добавления клиента
         VBox formBox = createClientForm();
 
-        // Таблица клиентов
         clientsTable = new TableView<>();
         setupClientsTable();
         loadClients();
@@ -27,9 +26,13 @@ public class ClientsViewController {
         return mainVBox;
     }
 
+
     private VBox createClientForm() {
         VBox formBox = new VBox(10);
-        formBox.setStyle("-fx-border-color: #cccccc; -fx-padding: 10; -fx-border-radius: 5;");
+        formBox.getStyleClass().add("card");
+
+        Label title = new Label("📋 Client details:");
+        title.getStyleClass().add("section-title");
 
         nameField = new TextField();
         nameField.setPromptText("Full name");
@@ -45,15 +48,21 @@ public class ClientsViewController {
 
         Button addButton = new Button("Add new client");
         addButton.setPrefWidth(150);
-        addButton.setStyle("-fx-font-size: 12;");
+        addButton.getStyleClass().add("primary-button");
         addButton.setOnAction(e -> addNewClient());
 
+        // Элементы в форму
         formBox.getChildren().addAll(
-                new Label("📋 Client details:"),
-                nameField, phoneField, emailField, addButton
+                title,
+                nameField,
+                phoneField,
+                emailField,
+                addButton
         );
+
         return formBox;
     }
+
 
     private void setupClientsTable() {
         TableColumn<Client, Integer> idCol = new TableColumn<>("ID");

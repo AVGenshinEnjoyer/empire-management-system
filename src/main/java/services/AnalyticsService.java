@@ -17,12 +17,12 @@ public class AnalyticsService{
                 .sum();
     }
 
-    // Доход от продаж мечей (80%)
+    // Доход от продаж мечей
     public static double getSwordsRevenue(String startDate, String endDate) {
         return getTotalRevenue(startDate, endDate) * 0.80;
     }
 
-    // Доход от тренировок (20%)
+    // Доход от тренировок
     public static double getTrainingsRevenue(String startDate, String endDate) {
         return getTotalRevenue(startDate, endDate) * 0.20;
     }

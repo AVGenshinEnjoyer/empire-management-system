@@ -1,6 +1,5 @@
 package models;
 
-// models/Visit.java
 public class Visit {
     private int id;
     private int clientId;
@@ -13,12 +12,12 @@ public class Visit {
         this.status = status;
     }
 
-    // Getters и Setters
-    public int getId() { return id; }
-    public void setId(int id) { this.id = id; }
+    // Прив
+    public int getId(){ return id; }
+    public void setId(int id){ this.id = id; }
 
-    public int getClientId() { return clientId; }
-    public String getVisitDate() { return visitDate; }
-    public String getStatus() { return status; }
-    public void setStatus(String status) { this.status = status; }
+    public int getClientId(){ return clientId; }
+    public String getVisitDate(){ return visitDate; }
+    public String getStatus(){ return status; }
+    public void setStatus(String status){ this.status = status; }
 }

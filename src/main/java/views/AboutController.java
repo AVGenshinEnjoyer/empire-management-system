@@ -25,6 +25,8 @@ public class AboutController {
         VBox root = new VBox(15);
         root.setPadding(new Insets(30, 40, 30, 40));
         root.setAlignment(Pos.TOP_CENTER);
+        root.getStyleClass().add("page");
+
 
         // Баннер сверху
         ImageView bannerView = new ImageView();
@@ -34,13 +36,13 @@ public class AboutController {
         } catch (Exception ignored) {
         }
         bannerView.setPreserveRatio(true);
-        bannerView.setFitWidth(800); // ширину можно подправить
+        bannerView.setFitWidth(800); // ширина
 
         // Хэштег под баннером
         Label hashtag = new Label("@Imperia_Sumraka");
         hashtag.getStyleClass().add("about-hashtag");
 
-        // Краткий текст о проекте
+        // Текст о проекте
         Label line1 = new Label("Learn more about us through socials");
 
         line1.setWrapText(true);

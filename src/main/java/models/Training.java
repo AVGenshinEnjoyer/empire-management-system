@@ -1,6 +1,5 @@
 package models;
 
-// models/Training.java
 public class Training {
     private int id;
     private String trainerName;
@@ -15,19 +14,19 @@ public class Training {
         this.maxClients = maxClients;
     }
 
-    // Getters и Setters
-    public int getId() { return id; }
-    public void setId(int id) { this.id = id; }
+    // Айоу
+    public int getId(){ return id; }
+    public void setId(int id){ this.id = id; }
 
-    public String getTrainerName() { return trainerName; }
-    public void setTrainerName(String name) { this.trainerName = name; }
+    public String getTrainerName(){ return trainerName; }
+    public void setTrainerName(String name){ this.trainerName = name; }
 
-    public String getDayOfWeek() { return dayOfWeek; }
-    public void setDayOfWeek(String day) { this.dayOfWeek = day; }
+    public String getDayOfWeek(){ return dayOfWeek; }
+    public void setDayOfWeek(String day){ this.dayOfWeek = day; }
 
-    public String getTime() { return time; }
-    public void setTime(String time) { this.time = time; }
+    public String getTime(){ return time; }
+    public void setTime(String time){ this.time = time; }
 
-    public int getMaxClients() { return maxClients; }
-    public void setMaxClients(int max) { this.maxClients = max; }
+    public int getMaxClients(){ return maxClients; }
+    public void setMaxClients(int max){ this.maxClients = max; }
 }

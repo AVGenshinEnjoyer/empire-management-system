@@ -5,7 +5,7 @@ import java.time.LocalDate;
 public class Employee{
     private int id;
     private String name;
-    private String role; // "admin", "seller", "trainer", "master", "director"
+    private String role;
     private String email;
     private String hireDate;
 
@@ -16,12 +16,12 @@ public class Employee{
         this.hireDate = LocalDate.now().toString();
     }
 
-    // Getters и Setters
-    public int getId() { return id; }
-    public void setId(int id) { this.id = id; }
+    // Опять геттеры и сеттеры
+    public int getId(){ return id; }
+    public void setId(int id){ this.id = id; }
 
-    public String getName() { return name; }
-    public String getRole() { return role; }
-    public String getEmail() { return email; }
-    public String getHireDate() { return hireDate; }
+    public String getName(){ return name; }
+    public String getRole(){ return role; }
+    public String getEmail(){ return email; }
+    public String getHireDate(){ return hireDate; }
 }
