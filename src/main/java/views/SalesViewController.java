@@ -1,10 +1,12 @@
 package views;// views/SalesViewController.java
 import javafx.scene.control.*;
 import javafx.scene.control.cell.ChoiceBoxTableCell;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.VBox;
 import javafx.geometry.Insets;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.util.converter.DoubleStringConverter;
 import services.SwordService;
 import services.SalesService;
 import models.Sword;
@@ -110,11 +112,31 @@ public class SalesViewController {
 
         statusCol.setCellFactory(ChoiceBoxTableCell.forTableColumn(FXCollections.observableArrayList("In stock", "Out of stock")));
 
+
+        // Возможность менять значения в таблице, не трогая код
         statusCol.setOnEditCommit(e -> {
             Sword s = e.getRowValue();
             s.setStockStatus(e.getNewValue());
             SwordService.updateSword(s);
         });
+
+        priceCol.setCellFactory(TextFieldTableCell.forTableColumn(new DoubleStringConverter()));
+        priceCol.setOnEditCommit(e -> {
+            Sword s = e.getRowValue();
+            s.setPrice(e.getNewValue());
+            SwordService.updateSword(s);
+        });
+
+
+        modelCol.setCellFactory(TextFieldTableCell.forTableColumn());
+        modelCol.setOnEditCommit(e -> {
+            Sword s = e.getRowValue();
+            s.setModel(e.getNewValue());
+            SwordService.updateSword(s);        
+        });
+
+
+
 
         swordsTable.getColumns().addAll(idCol, modelCol, priceCol, statusCol);
         swordsTable.setPrefHeight(300);

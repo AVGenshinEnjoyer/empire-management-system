@@ -16,7 +16,6 @@ import javafx.collections.ObservableList;
 import services.AnalyticsService;
 
 import java.time.LocalDate;
-import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class DashboardController {
@@ -120,9 +119,9 @@ public class DashboardController {
         XYChart.Series<String, Number> series = new XYChart.Series<>();
         series.setName("Sales"); // имя теперь только для кода
 
-        series.getData().add(new XYChart.Data<>("ABS Katana", 12));
-        series.getData().add(new XYChart.Data<>("3D-printed Longsword", 8));
-        series.getData().add(new XYChart.Data<>("Training Sword", 5));
+        series.getData().add(new XYChart.Data<>("WaterFall sword", 12));
+        series.getData().add(new XYChart.Data<>("SkyBreaker sword", 8));
+        series.getData().add(new XYChart.Data<>("TitanFall Sword", 5));
 
         barChart.getData().add(series);
 

@@ -7,7 +7,7 @@ public class SwordSale {
     private int clientId;
     private String saleDate;
     private double amount;
-    private String paymentMethod; // "cash", "card", "installment"
+    private String paymentMethod; // "cash", "card"
 
     public SwordSale(int swordId, int clientId, double amount, String paymentMethod) {
         this.swordId = swordId;

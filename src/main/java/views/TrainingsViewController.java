@@ -4,7 +4,10 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.VBox;
+import javafx.util.converter.DoubleStringConverter;
+import javafx.util.converter.IntegerStringConverter;
 import models.Client;
 import models.Training;
 import services.TrainingService;
@@ -90,8 +93,42 @@ public class TrainingsViewController {
         maxCol.setCellValueFactory(c -> new javafx.beans.property.SimpleIntegerProperty(c.getValue().getMaxClients()).asObject());
         maxCol.setPrefWidth(120);
 
+
+        //Редактирование строк
+        trainerCol.setCellFactory(TextFieldTableCell.forTableColumn());
+        trainerCol.setOnEditCommit(e -> {
+            Training t = e.getRowValue();
+            t.setTrainerName(e.getNewValue());
+            TrainingService.updateTraining(t);
+        });
+
+        dayCol.setCellFactory(TextFieldTableCell.forTableColumn());
+        dayCol.setOnEditCommit(e -> {
+            Training t = e.getRowValue();
+            t.setDayOfWeek(e.getNewValue());
+            TrainingService.updateTraining(t);
+        });
+
+        timeCol.setCellFactory(TextFieldTableCell.forTableColumn());
+        timeCol.setOnEditCommit(e -> {
+            Training t = e.getRowValue();
+            t.setTime(e.getNewValue());
+            TrainingService.updateTraining(t);
+        });
+
+        maxCol.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+        maxCol.setOnEditCommit(e -> {
+            Training t = e.getRowValue();
+            t.setMaxClients(e.getNewValue());
+            TrainingService.updateTraining(t);
+        });
+
+
         trainingsTable.getColumns().addAll(idCol, trainerCol, dayCol, timeCol, maxCol);
         trainingsTable.setPrefHeight(400);
+
+        trainingsTable.setEditable(true);
+
     }
 
     private void loadTrainings() {

@@ -116,6 +116,18 @@
     -fx-effect: dropshadow(gaussian, rgba(59,130,246,0.25), 10, 0.25, 0, 0);
 }
 
+.combo-box-popup .list-view .list-cell {
+    -fx-text-fill: black;
+}
+
+.combo-box .list-cell {
+    -fx-text-fill: white;
+}
+
+
+
+
+
 /* Цвет таблиц */
 
 .table-view {

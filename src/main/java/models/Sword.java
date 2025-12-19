@@ -14,6 +14,8 @@ public class Sword {
         this.stockStatus = "available";
     }
 
+
+
     // Не поверите что
     public int getId(){ return id; }
     public void setId(int id){ this.id = id; }

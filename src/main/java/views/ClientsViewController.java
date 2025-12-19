@@ -1,9 +1,11 @@
 package views;// views/ClientsViewController.java
 import javafx.scene.control.*;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.VBox;
 import javafx.geometry.Insets;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.util.converter.DoubleStringConverter;
 import models.Sword;
 import services.ClientService;
 import models.Client;
@@ -98,8 +100,44 @@ public class ClientsViewController {
         debtCol.setCellValueFactory(cellData -> new javafx.beans.property.SimpleDoubleProperty(cellData.getValue().getDebt()).asObject());
         debtCol.setPrefWidth(100);
 
+
+        // Редактирование данных в таблице, не затрагивая код
+        nameCol.setCellFactory(TextFieldTableCell.forTableColumn());
+        nameCol.setOnEditCommit(e -> {
+            Client c = e.getRowValue();
+            c.setName(e.getNewValue());
+            ClientService.updateClient(c);   // сделай метод, если его нет
+        });
+
+        phoneCol.setCellFactory(TextFieldTableCell.forTableColumn());
+        phoneCol.setOnEditCommit(e -> {
+            Client c = e.getRowValue();
+            c.setPhone(e.getNewValue());
+            ClientService.updateClient(c);
+        });
+
+        emailCol.setCellFactory(TextFieldTableCell.forTableColumn());
+        emailCol.setOnEditCommit(e -> {
+            Client c = e.getRowValue();
+            c.setEmail(e.getNewValue());
+            ClientService.updateClient(c);
+        });
+
+        debtCol.setCellFactory(TextFieldTableCell.forTableColumn(new DoubleStringConverter()));
+        debtCol.setOnEditCommit(e -> {
+            Client c = e.getRowValue();
+            c.setDebt(e.getNewValue());
+            ClientService.updateClient(c);
+        });
+
+
+
+
+
         clientsTable.getColumns().addAll(idCol, nameCol, phoneCol, emailCol, statusCol, debtCol);
         clientsTable.setPrefHeight(400);
+        clientsTable.setEditable(true);
+
     }
 
     private void loadClients() {
